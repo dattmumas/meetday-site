@@ -24,7 +24,9 @@
     <tr><td>Sessions, sets, blocks, schedules, custom exercises</td><td>You, or tools you connect with an API key</td><td>The core function of the app: declared loads, judged sets, history, records and charts</td></tr>
     <tr><td>Body measurements (weight, body fat, circumferences)</td><td>You, if you choose to enter them</td><td>Measurement history and trend charts</td></tr>
     <tr><td>Settings (units, rest time, the plates and bars in your gym)</td><td>You</td><td>App behavior and plate math</td></tr>
-    <tr><td>Meet Day Pro purchases: the plan, its renewal or end date, the App Store transaction ID</td><td>The App Store, when you subscribe or restore</td><td>Opens Meet Day Pro on every device you sign in to, and for your API keys</td></tr>
+    <tr><td>Meet Day Pro purchases: the plan, its renewal or end date, the App Store transaction ID</td><td>The App Store, when you subscribe or restore</td><td>Opens Meet Day Pro on every device you sign in to, and for your API keys and connected assistants</td></tr>
+    <tr><td>Trainer usage: how many trainer messages your account sent to Claude each month, and their size in tokens</td><td>Our server, when the trainer answers with Claude</td><td>The monthly allowance of Meet Day Pro. The questions and answers are not stored.</td></tr>
+    <tr><td>Connected assistants: which assistant you connected and when</td><td>Our sign-in service, when you tap Allow</td><td>Lets the assistant act for you until you revoke it</td></tr>
   </table>
   <p>Apple processes the payment for Meet Day Pro. We never receive your payment card or your Apple Account details.</p>
   <p>We do not collect location, contacts, photos, advertising identifiers or browsing history. The app has no ads, no analytics SDKs and no tracking. We do not sell or share your data for advertising.</p>
@@ -38,20 +40,30 @@
     <li>Supabase: database, authentication and server functions</li>
     <li>Resend: sends confirmation and password reset codes to your email address</li>
     <li>Apple: Sign in with Apple, if you use it, and payments for Meet Day Pro through the App Store</li>
+    <li>Anthropic: answers the trainer's questions with Claude, only after you allow it (see The AI trainer)</li>
   </ul>
   <p>We may disclose data if the law requires it.</p>
 
-  <h2>API keys and connected tools</h2>
-  <p>You can create personal API keys in Settings. Anyone holding a key can read and change your training data, so share keys only with tools you trust, such as an AI assistant you use. When you give a key to a third-party service, that service's own privacy policy applies to the data it receives. The app itself contains no AI service and sends no data to AI providers. You can revoke a key at any time in Settings. We store only a one-way hash of each key.</p>
+  <h2>The AI trainer</h2>
+  <p>With Meet Day Pro on iOS 27, you can ask the trainer about your training. To answer, the trainer reads your training data in the app: sessions, workouts, loads, reps, RPE, your block and your gym. It proposes changes, and nothing changes until you tap Apply.</p>
+  <ul>
+    <li>Apple Intelligence: when your iPhone supports it, the trainer answers with Apple's model on Private Cloud Compute. Apple processes the request to answer it and does not store it.</li>
+    <li>Claude by Anthropic: when Apple's model is not available, the trainer can answer with Claude, and only after you allow it in the app. Your question and the training data the trainer needs go to Anthropic through our server. Your name, email and account details are not sent. Anthropic uses the data to answer and does not train its models on it, under its commercial terms. You can take the permission back in Today &gt; Settings &gt; AI trainer.</li>
+  </ul>
+  <p>The chat stays on your iPhone, and deleting your account deletes it. Our server does not store your questions or the answers; it counts messages and tokens for the monthly allowance.</p>
+
+  <h2>Connected assistants and API keys</h2>
+  <p>You can connect an AI assistant you already use, such as Claude, ChatGPT or Gemini, by signing in with Meet Day on our sign-in page and tapping Allow. The assistant then reads and changes your training data through Meet Day's tools, as you. It cannot see your password, make API keys or delete your account. The data it receives is governed by that assistant's own privacy policy. See and revoke connections in Today &gt; Settings &gt; Connected assistants.</p>
+  <p>For tools on your own computer, such as Claude Code, you can create personal API keys in Today &gt; Settings &gt; Advanced. Anyone holding a key can read and change your training data, so share keys only with tools you trust. You can revoke a key at any time. We store only a one-way hash of each key.</p>
 
   <h2>Retention and deletion</h2>
-  <p>We keep your data while your account exists. To delete your account and all of its data, open Today &gt; Settings &gt; Delete Account. Deletion is immediate and permanent. If you used Sign in with Apple, we also revoke the app's Apple sign-in tokens. Deleting your account does not cancel a Meet Day Pro subscription: Apple bills it until you cancel it in your Apple Account settings (Settings &gt; your name &gt; Subscriptions). Copies may remain in our hosting provider's encrypted backups for a limited period before they are overwritten. You can also email us to request deletion or a copy of your data.</p>
+  <p>We keep your data while your account exists. To delete your account and all of its data, open Today &gt; Settings &gt; Delete Account. Deletion is immediate and permanent, and it also ends every connected assistant, removes your API keys and trainer usage records, and deletes the trainer's chat on that iPhone. If you used Sign in with Apple, we also revoke the app's Apple sign-in tokens. Deleting your account does not cancel a Meet Day Pro subscription: Apple bills it until you cancel it in your Apple Account settings (Settings &gt; your name &gt; Subscriptions). Copies may remain in our hosting provider's encrypted backups for a limited period before they are overwritten. You can also email us to request deletion or a copy of your data.</p>
 
   <h2>Your rights</h2>
   <p>Depending on where you live, you may have the right to access, correct, export or delete your personal data, and to object to or restrict processing. Most of these you can do in the app. For anything else, email <a href="mailto:support@lnkd.world">support@lnkd.world</a> and we will respond within 30 days.</p>
 
   <h2>Health information</h2>
-  <p>Meet Day is a training log. It does not give medical advice and is not a medical device. We do not use your training or body data for any purpose other than showing it to you.</p>
+  <p>Meet Day is a training log. It does not give medical advice and is not a medical device, and the trainer gives no diagnosis or treatment. We use your training and body data only to show it to you and, when you ask, for the trainer's answers.</p>
 
   <h2>Children</h2>
   <p>Meet Day is not directed to children under 13, and we do not knowingly collect their data. If you believe a child has created an account, contact us and we will delete it.</p>

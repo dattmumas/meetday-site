@@ -45,3 +45,16 @@ td { text-align: left; padding: 10px 12px 10px 0; border-bottom: 1px solid var(-
 .qa p { margin: 6px 0 12px; }
 .qa .q { font-weight: 700; margin: 0; }
 footer { margin-top: 56px; padding-top: 16px; border-top: 1px solid var(--rule); }
+
+/* The consent page (oauth/consent.html). */
+.consent h1 { font-size: clamp(48px, 13vw, 84px); }
+.stack { display: grid; gap: 8px; max-width: 420px; margin: 16px 0; }
+input { font: inherit; color: var(--chalk); background: var(--surface); border: 1px solid var(--rule); border-radius: 10px; padding: 12px 14px; width: 100%; }
+input:focus { outline: 2px solid var(--chalk); outline-offset: 1px; }
+button { font: 700 14px/1 "Archivo", -apple-system, sans-serif; letter-spacing: 0.08em; text-transform: uppercase; color: var(--bg); background: var(--chalk); border: 0; border-radius: 10px; padding: 16px 20px; cursor: pointer; }
+button.secondary { color: var(--chalk); background: transparent; border: 1px solid var(--rule); }
+button:disabled { opacity: 0.5; cursor: default; }
+.actions { display: flex; gap: 12px; margin-top: 20px; }
+.actions button { flex: 1; max-width: 200px; }
+.error { font-weight: 700; border-left: 3px solid var(--chalk); padding-left: 12px; }
+[hidden] { display: none !important; }
