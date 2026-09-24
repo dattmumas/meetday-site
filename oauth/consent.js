@@ -54,11 +54,11 @@ async function auth(path, { method = "POST", body, token } = {}) {
 
 function readable(err) {
   const code = String(err.code || "");
+  if (code === "invalid_credentials" || /invalid login credentials/i.test(err.message)) return "Wrong email or password.";
   if (code === "otp_disabled" || /signups not allowed/i.test(err.message)) {
     return "No Meet Day account uses this email. Create your account in the app first.";
   }
   if (code === "otp_expired" || /expired|invalid/i.test(err.message)) return "That code is wrong or has expired. Send a new one.";
-  if (code === "invalid_credentials") return "Wrong email or password.";
   if (code === "over_email_send_rate_limit" || err.status === 429) return "Too many tries. Wait a minute, then try again.";
   if (code === "oauth_authorization_not_found" || err.status === 404) {
     return "This request has expired. Go back to your assistant and connect again.";
@@ -179,12 +179,12 @@ $("use-password").addEventListener("click", (e) => {
   $("password").focus();
 });
 
+// A request belongs to the first account that opened it, so another account must start again.
 $("switch").addEventListener("click", (e) => {
   e.preventDefault();
   session = null;
-  $("code").value = "";
-  $("password").value = "";
-  show("signin");
+  $("done-text").textContent = "To connect another Meet Day account, go back to your assistant and connect again.";
+  show("done");
 });
 
 $("allow").addEventListener("click", () => decide("approve"));
