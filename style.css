@@ -1,0 +1,47 @@
+/* Meet Day: dark ground, chalk type, color only on the lamps. */
+@font-face { font-family: "Archivo XC"; src: url("fonts/ArchivoExtraCondensed-Black.woff2") format("woff2"); font-weight: 900; font-display: swap; }
+@font-face { font-family: "Archivo"; src: url("fonts/Archivo-Regular.woff2") format("woff2"); font-weight: 400; font-display: swap; }
+@font-face { font-family: "Archivo"; src: url("fonts/Archivo-Bold.woff2") format("woff2"); font-weight: 700; font-display: swap; }
+
+:root {
+  --bg: #121212;
+  --surface: #1a1a1a;
+  --rule: #2c2c2c;
+  --chalk: #f1efea;
+  --steel: #9c9c97;
+  --good: #ffffff;
+  --no: #ff453a;
+}
+* { box-sizing: border-box; }
+html { background: var(--bg); }
+body { margin: 0; background: var(--bg); color: var(--chalk); font: 17px/1.55 "Archivo", -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif; -webkit-text-size-adjust: 100%; }
+main { max-width: 720px; margin: 0 auto; padding: 40px 16px 80px; }
+
+nav { display: flex; align-items: center; gap: 20px; padding-bottom: 16px; margin-bottom: 36px; border-bottom: 1px solid var(--rule); }
+nav a { color: var(--steel); text-decoration: none; font-weight: 700; font-size: 12px; letter-spacing: 0.08em; text-transform: uppercase; }
+nav a:first-child { color: var(--chalk); margin-right: auto; }
+nav a:hover, nav a:focus-visible { color: var(--chalk); }
+
+h1, h2, .display { font-family: "Archivo XC", "Arial Narrow", sans-serif; font-weight: 900; text-transform: uppercase; word-spacing: 0.16em; line-height: 0.9; margin: 0; }
+h1 { font-size: clamp(56px, 16vw, 104px); margin-bottom: 16px; }
+h2 { font-size: 30px; margin: 40px 0 12px; }
+p, li { color: var(--chalk); }
+.label { font-weight: 700; font-size: 12px; letter-spacing: 0.08em; text-transform: uppercase; color: var(--steel); }
+.muted { color: var(--steel); }
+a { color: var(--chalk); text-underline-offset: 3px; }
+a:hover { color: #ffffff; }
+strong { font-weight: 700; }
+ul { padding-left: 20px; }
+
+table { border-collapse: collapse; width: 100%; font-size: 15px; }
+th { text-align: left; padding: 8px 12px 8px 0; border-bottom: 1px solid var(--rule); font-weight: 700; font-size: 12px; letter-spacing: 0.08em; text-transform: uppercase; color: var(--steel); }
+td { text-align: left; padding: 10px 12px 10px 0; border-bottom: 1px solid var(--rule); vertical-align: top; }
+
+.lamps { display: flex; gap: 14px; margin: 28px 0; }
+.lamp { width: 44px; height: 44px; border-radius: 50%; background: var(--good); box-shadow: 0 0 22px rgba(255, 255, 255, 0.38); }
+.lamp.no { background: var(--no); box-shadow: 0 0 22px rgba(255, 69, 58, 0.45); }
+.lead { font-size: 21px; line-height: 1.45; }
+.qa { border-top: 1px solid var(--rule); padding: 16px 0 4px; }
+.qa p { margin: 6px 0 12px; }
+.qa .q { font-weight: 700; margin: 0; }
+footer { margin-top: 56px; padding-top: 16px; border-top: 1px solid var(--rule); }
