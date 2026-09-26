@@ -1,0 +1,176 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Plate calculator: the fewest plates per side · Meet Day</title>
+<meta name="description" content="A free plate calculator in lb or kg. It draws the fewest plates per side for your bar and your plates, and it plans the warm-ups to your target.">
+<meta name="color-scheme" content="dark">
+<meta name="theme-color" content="#121212">
+<link rel="canonical" href="https://meetday.lnkd.world/plates/">
+<link rel="icon" href="/icon.svg" type="image/svg+xml">
+<link rel="apple-touch-icon" href="/apple-touch-icon.png">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="Meet Day">
+<meta property="og:title" content="Plate calculator: load the bar with the plates you own">
+<meta property="og:description" content="Set a target on your own bar and plates. See the fewest plates per side and a warm-up ladder. Free, in lb or kg.">
+<meta property="og:url" content="https://meetday.lnkd.world/plates/">
+<meta property="og:image" content="https://meetday.lnkd.world/assets/og/plates.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:image:alt" content="The words Load the bar with the plates you own, next to 305 lb drawn as 45, 45, 25, 10 and 5 lb plates per side.">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Plate calculator: load the bar with the plates you own">
+<meta name="twitter:description" content="Set a target on your own bar and plates. See the fewest plates per side and a warm-up ladder. Free, in lb or kg.">
+<meta name="twitter:image:alt" content="The words Load the bar with the plates you own, next to 305 lb drawn as 45, 45, 25, 10 and 5 lb plates per side.">
+<meta name="twitter:image" content="https://meetday.lnkd.world/assets/og/plates.png">
+<!-- smart-app-banner -->
+<link rel="preload" href="/fonts/ArchivoExtraCondensed-Black.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="stylesheet" href="/landing.css">
+<script src="/config.js" defer></script>
+<script src="/site.js" defer></script>
+<script src="/assets/js/platemath.js" defer></script>
+<script src="/assets/js/plates.js" defer></script>
+</head>
+<body>
+<a class="skip" href="#main">Skip to content</a>
+<header class="nav">
+  <div class="wrap">
+    <a class="mark" href="/">Meet Day</a>
+    <nav class="links" aria-label="Pages">
+      <a href="/switch/">Switch</a>
+      <a href="/progression/">Progression</a>
+      <a href="/plates/" aria-current="page">Plates</a>
+      <a href="/trainer/">Trainer</a>
+      <a href="/january/">January</a>
+      <a href="/#pro">Pricing</a>
+      <a href="/support.html">Support</a>
+    </nav>
+  </div>
+</header>
+
+<main id="main">
+  <section class="page-hero" aria-labelledby="h-page">
+    <div class="wrap">
+      <div class="intro">
+        <p class="label">Plate calculator · free</p>
+        <h1 id="h-page">Load the bar with the plates you own</h1>
+        <p class="lead">Pick your bar and the plates on your rack. Set a target, and the calculator draws the fewest plates per side. It is the plate math of the Meet Day app.</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="sec" aria-label="The calculator" style="padding-top:clamp(40px,6vw,72px)">
+    <div class="wrap">
+      <p class="fine" id="calc-static">The calculator needs JavaScript. On a 45 lb bar, 185 lb is 45 + 25 per side.</p>
+      <div class="tool" id="calc" role="group" hidden aria-label="Plate calculator">
+        <div class="controls">
+          <fieldset class="field">
+            <legend class="label">Unit</legend>
+            <div class="seg">
+              <label><input type="radio" name="c-unit" value="lb" checked><span>lb</span></label>
+              <label><input type="radio" name="c-unit" value="kg"><span>kg</span></label>
+            </div>
+          </fieldset>
+          <fieldset class="field">
+            <legend class="label">Bar</legend>
+            <div class="chips" id="c-bars"></div>
+          </fieldset>
+          <fieldset class="field">
+            <legend class="label">Plates on the rack · tap to toggle</legend>
+            <div class="chips" id="c-plates"></div>
+          </fieldset>
+          <div class="field">
+            <label class="label" for="c-target">Target, <span data-unit-label>lb</span></label>
+            <div class="stepper">
+              <button type="button" id="c-minus" aria-label="Take off 5 lb">−</button>
+              <input id="c-target" type="number" inputmode="decimal" min="45" step="5" value="185">
+              <button type="button" id="c-plus" aria-label="Add 5 lb">+</button>
+            </div>
+          </div>
+        </div>
+        <div class="result">
+          <p class="label">How it loads</p>
+          <div class="big"><span class="num" id="c-total">185</span><span class="unit" id="c-unit">LB</span></div>
+          <div class="bar-box" id="c-bar"></div>
+          <div id="c-fit">
+            <p class="heavy per-side" id="c-per-side">45 + 25 per side</p>
+            <p class="label" id="c-count">4 plates on the bar</p>
+          </div>
+          <div id="c-miss" hidden>
+            <p class="miss" id="c-miss-text">Can’t make 187 exactly</p>
+            <div class="nearest" id="c-nearest"></div>
+          </div>
+          <div id="c-warm" class="warm">
+            <p class="label" id="c-warm-title">Warm-ups to 185 lb</p>
+            <div class="ladder" id="c-ladder" role="table" aria-label="Warm-ups"></div>
+          </div>
+          <p class="sr-only" aria-live="polite" id="c-status"></p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="sec" aria-labelledby="h-how">
+    <div class="wrap">
+      <header class="sec-head">
+        <p class="label">How it picks plates</p>
+        <h2 id="h-how">Few plates, big plates inside</h2>
+      </header>
+      <div class="split even">
+        <ul class="rows copy">
+          <li><span class="r-title">The fewest plates per side</span><span class="r-text">Of all the ways to make the load, the calculator picks the one with the fewest plates. Big plates sit inside.</span></li>
+          <li><span class="r-title">Only loads your rack can make</span><span class="r-text">Your lightest pair of plates sets the smallest jump. With 2.5 lb plates, loads go up 5 lb at a time.</span></li>
+          <li><span class="r-title">The closest loads</span><span class="r-text">When a target is not possible, it shows the closest loads below and above it.</span></li>
+          <li><span class="r-title">Warm-ups in plates</span><span class="r-text">Steps at about 50, 70 and 90 percent, each at a load that needs few plates. Each step keeps the big plates on and changes the rest.</span></li>
+        </ul>
+        <div class="copy stack">
+          <p>In the app, Today &gt; Settings &gt; Your gym holds your plates and bars. Every load you see is drawn with them, and the rulebook only declares loads your gym can make.</p>
+          <p>The warm-up screen walks you up the ladder, one step at a time. Warm-ups are not judged.</p>
+          <div class="cta" data-store="site-plates"><span class="soon">Coming soon to the App Store</span></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="sec" aria-labelledby="h-app">
+    <div class="wrap">
+      <div class="split flip">
+        <figure class="shot"><div class="frame"><img src="/assets/img/03-warm-up-400.webp" srcset="/assets/img/03-warm-up-400.webp 400w, /assets/img/03-warm-up-800.webp 800w" sizes="(min-width: 768px) 360px, 90vw" width="1320" height="2868" alt="The warm-up screen for Back Squat: now loading 45 × 10 on the empty bar, then 95, 135 and 165 with the plates to add or remove, up to the work set of 185 × 8." loading="lazy" decoding="async"></div><figcaption>Warm-up · 4 steps to 185</figcaption></figure>
+        <div class="copy stack">
+          <p class="label">In the app · free</p>
+          <h2 id="h-app">Warm-ups step up in plates</h2>
+          <p>Before each work set, Meet Day plans the warm-ups to it. Each step names the plates to take off and put on: 25 off, 45 on.</p>
+          <p>Each lift also shows its next plate milestone: one plate a side, then two. Logging, warm-ups and your gym are free.</p>
+          <p class="more"><a href="/progression/">How the rulebook sets the next load</a></p>
+        </div>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer class="site-foot">
+  <div class="wrap">
+    <div>
+      <p class="label chalk" style="margin-bottom:12px">Meet Day</p>
+      <nav class="links" aria-label="Site">
+        <a href="/switch/">Switch from Hevy</a>
+        <a href="/progression/">Progression</a>
+        <a href="/plates/">Plate calculator</a>
+        <a href="/trainer/">The AI trainer</a>
+        <a href="/january/">January</a>
+        <a href="/creators/">Creators</a>
+      </nav>
+    </div>
+    <div class="legal">
+      <nav class="links" aria-label="Legal" style="margin-bottom:12px">
+        <a href="/privacy.html">Privacy Policy</a>
+        <a href="https://www.apple.com/legal/internet-services/itunes/dev/stdeula/">Terms of Use</a>
+        <a href="/support.html">Support</a>
+      </nav>
+      <p>© 2026 Matthew Dumas</p>
+    </div>
+  </div>
+</footer>
+</body>
+</html>
