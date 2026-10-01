@@ -1,4 +1,4 @@
-/* Meet Day plate math, ported line by line from ios/Shared/Model/PlateMath.swift.
+/* Block plate math, ported line by line from ios/Shared/Model/PlateMath.swift.
    Plate sizes are in the gym's unit (lb or kg). The bar drawing follows
    ios/Shared/DesignSystem/PlateBar.swift. Loads as a classic script in the
    browser (window.PlateMath) and with require() in node (tools/site/plates_test.mjs). */

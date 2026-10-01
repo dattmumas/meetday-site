@@ -56,7 +56,7 @@ function readable(err) {
   const code = String(err.code || "");
   if (code === "invalid_credentials" || /invalid login credentials/i.test(err.message)) return "Wrong email or password.";
   if (code === "otp_disabled" || /signups not allowed/i.test(err.message)) {
-    return "No Meet Day account uses this email. Create your account in the app first.";
+    return "No Block account uses this email. Create your account in the app first.";
   }
   if (code === "otp_expired" || /expired|invalid/i.test(err.message)) return "That code is wrong or has expired. Send a new one.";
   if (code === "over_email_send_rate_limit" || err.status === 429) return "Too many tries. Wait a minute, then try again.";
@@ -183,7 +183,7 @@ $("use-password").addEventListener("click", (e) => {
 $("switch").addEventListener("click", (e) => {
   e.preventDefault();
   session = null;
-  $("done-text").textContent = "To connect another Meet Day account, go back to your assistant and connect again.";
+  $("done-text").textContent = "To connect another Block account, go back to your assistant and connect again.";
   show("done");
 });
 

@@ -24,7 +24,7 @@
     value.textContent = code;
     hasCode.hidden = false;
     noCode.hidden = true;
-    document.title = "Your code " + code + " · Meet Day Pro";
+    document.title = "Your code " + code + " · Block Pro";
     if (input) input.value = code;
   } else {
     hasCode.hidden = true;

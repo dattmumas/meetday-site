@@ -41,7 +41,7 @@
         a.appendChild(img);
       } else {
         a.className = "btn";
-        a.textContent = "Get Meet Day on the App Store";
+        a.textContent = "Get Block on the App Store";
       }
       while (el.firstChild) el.removeChild(el.firstChild);
       el.appendChild(a);
