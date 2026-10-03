@@ -1,18 +1,22 @@
-/* /progression/: lift the last set of Back Squat 3 × 8 and see the lamps and the card.
-   The judging follows Judge.lamps (ios/Liftbook/Services/Judge.swift) and the card line
-   follows Rulebook.line (ios/Liftbook/Services/Trainer.swift) for a barbell lift with
-   straight sets. Loads fit the plates with PlateMath (platemath.js). */
+/* /progression/: lift the last set of Back Squat 3 × 8 and see the lamps and the next target.
+   The judging is the app's (judge.js: in kg as the app saves a set, the estimated-max pass and
+   the lift's target RPE) and the card line follows Rulebook.line (ios/Liftbook/Services/Trainer.swift)
+   for a barbell lift with straight sets. Back Squat is a big lower-body lift (Exercise.isBigLowerBody),
+   so its step is 10 lb or 5 kg (LoadRules.step); the load field steps by the unit's plates.
+   Loads fit the plates with PlateMath (platemath.js). */
 (function () {
   "use strict";
   var PM = window.PlateMath;
+  var J = window.BlockJudge;
   var root = document.getElementById("demo");
-  if (!PM || !root) return;
+  if (!PM || !J || !root) return;
 
   var UNITS = {
-    lb: { declared: 185, step: 5, bar: 45, stock: PM.defaultStock("lb"), name: "lb", spoken: "pounds" },
-    kg: { declared: 85, step: 2.5, bar: 20, stock: PM.defaultStock("kg"), name: "kg", spoken: "kilograms" },
+    lb: { declared: 185, step: 10, input: 5, bar: 45, stock: PM.defaultStock("lb"), name: "lb", spoken: "pounds" },
+    kg: { declared: 85, step: 5, input: 2.5, bar: 20, stock: PM.defaultStock("kg"), name: "kg", spoken: "kilograms" },
   };
   var TARGET_REPS = 8;
+  var TARGET_RPE = J.DEFAULT_TARGET_RPE;
   var EARLIER_RPE = 7;
   var reduced = window.matchMedia && window.matchMedia("(prefers-reduced-motion: reduce)").matches;
 
@@ -25,13 +29,11 @@
   var shownPlates = null;
   var lastVerdict = null;
 
-  /** Judge.lamps: REPS, LOAD, EFFORT. Effort passes without an RPE; above 8 is red. */
+  /** Judge.lamps: REPS, LOAD, EFFORT. A set that beats the target's estimated max passes reps and
+      load together; effort passes without an RPE, and at or under the target RPE. */
   function lamps(set, u) {
-    return [
-      set.reps >= TARGET_REPS ? "good" : "no",
-      set.load >= u.declared - 0.01 ? "good" : "no",
-      (set.rpe == null ? 0 : set.rpe) <= 8 ? "good" : "no",
-    ];
+    var l = J.judgeSet(set, { load: u.declared, reps: TARGET_REPS, rpe: TARGET_RPE }, u.name);
+    return l.split("").map(function (c) { return c === "R" ? "no" : "good"; });
   }
 
   function sets(u) {
@@ -52,14 +54,14 @@
     }
     if (firstRed >= 0) {
       if (state.held) {
-        // Two holds in a row at this load: reset 10% to a load the plates make.
+        // A second red light in a row at this load: reset 10% to a load the plates make.
         var reset = PM.makeable(u.declared * 0.9, u.bar, u.stock, "nearest");
         return { load: reset, tag: "Reset", call: "reset", reason: "Second hold in a row. Build back from " + fmt(reset) + "." };
       }
       var l = judged[firstRed], n = firstRed + 1, reason;
       if (l[0] === "no") reason = "Short on reps in set " + n + ". Same load next time.";
       else if (l[1] === "no") reason = "Set " + n + " was under the declared load. Same load next time.";
-      else reason = "RPE " + fmt1(s[firstRed].rpe == null ? 10 : s[firstRed].rpe) + " in set " + n + " is past 8. Same load next time.";
+      else reason = "RPE " + fmt1(s[firstRed].rpe == null ? 10 : s[firstRed].rpe) + " in set " + n + " is over its target of " + fmt1(TARGET_RPE) + ". Same load next time.";
       return { load: u.declared, tag: "Hold", call: "hold", reason: reason };
     }
     var rpe = null;
@@ -155,7 +157,7 @@
     $("#d-reasons").textContent = reasons.join(" · ");
     $("#d-reasons").hidden = good;
 
-    // The card line
+    // The next target
     var line = cardLine(u);
     $("#d-why").textContent = line.reason;
     $("#d-next").textContent = fmt(line.load);
@@ -186,11 +188,11 @@
     var u = UNITS[name];
     state.load = u.declared;
     $("#d-load").value = fmt(state.load).replace(/,/g, "");
-    $("#d-load").step = String(u.step);
+    $("#d-load").step = String(u.input);
     $("#d-load").min = String(u.bar);
-    all("[data-load-step]").forEach(function (b) { b.setAttribute("data-load-step", (b.getAttribute("data-load-step").charAt(0) === "-" ? "-" : "") + u.step); });
-    all(".d-load-minus").forEach(function (b) { b.setAttribute("aria-label", "Take off " + fmt(u.step) + " " + u.name); });
-    all(".d-load-plus").forEach(function (b) { b.setAttribute("aria-label", "Add " + fmt(u.step) + " " + u.name); });
+    all("[data-load-step]").forEach(function (b) { b.setAttribute("data-load-step", (b.getAttribute("data-load-step").charAt(0) === "-" ? "-" : "") + u.input); });
+    all(".d-load-minus").forEach(function (b) { b.setAttribute("aria-label", "Take off " + fmt(u.input) + " " + u.name); });
+    all(".d-load-plus").forEach(function (b) { b.setAttribute("aria-label", "Add " + fmt(u.input) + " " + u.name); });
     shownPlates = null;
     update(true);
   }

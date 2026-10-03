@@ -18,11 +18,11 @@
 <meta property="og:image" content="https://meetday.lnkd.world/assets/og/progression.png">
 <meta property="og:image:width" content="1200">
 <meta property="og:image:height" content="630">
-<meta property="og:image:alt" content="The words Good lifts move you up, next to a card of next loads: Back Squat 190 up 5, Romanian Deadlift 235 hold, Bench Press 165 reset, Walking Lunge 30 with one more rep.">
+<meta property="og:image:alt" content="The words Good lifts move you up, next to the next targets: Back Squat 195 up 10, Romanian Deadlift 235 hold, Bench Press 165 reset, Walking Lunge 30 with one more rep.">
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:title" content="Good lifts move you up">
 <meta name="twitter:description" content="Three lamps judge every declared set. Every set good, the load goes up a step. A red light holds it. Try a set against the rulebook.">
-<meta name="twitter:image:alt" content="The words Good lifts move you up, next to a card of next loads: Back Squat 190 up 5, Romanian Deadlift 235 hold, Bench Press 165 reset, Walking Lunge 30 with one more rep.">
+<meta name="twitter:image:alt" content="The words Good lifts move you up, next to the next targets: Back Squat 195 up 10, Romanian Deadlift 235 hold, Bench Press 165 reset, Walking Lunge 30 with one more rep.">
 <meta name="twitter:image" content="https://meetday.lnkd.world/assets/og/progression.png">
 <!-- smart-app-banner -->
 <link rel="preload" href="/fonts/ArchivoExtraCondensed-Black.woff2" as="font" type="font/woff2" crossorigin>
@@ -30,6 +30,7 @@
 <script src="/config.js" defer></script>
 <script src="/site.js" defer></script>
 <script src="/assets/js/platemath.js" defer></script>
+<script src="/assets/js/judge.js" defer></script>
 <script src="/assets/js/progression.js" defer></script>
 </head>
 <body>
@@ -55,7 +56,7 @@
       <div class="intro">
         <p class="label">Progression <span class="tag">Pro</span></p>
         <h1 id="h-page">Good lifts move you up</h1>
-        <p class="lead">Block judges every declared set with three lamps: reps, load and effort. After the session, the rulebook writes the card with your next loads.</p>
+        <p class="lead">Block judges every declared set with three lamps: reps, load and effort. After the session, the rulebook sets your next loads, and Start session saves them to the workout.</p>
         <div class="cta" data-store="site-progression"><span class="soon">Coming soon to the App Store</span></div>
       </div>
     </div>
@@ -66,15 +67,15 @@
       <header class="sec-head">
         <p class="label">Try a set</p>
         <h2 id="h-try">Lift the last set</h2>
-        <p class="lead">Sets 1 and 2 were good lifts. Log set 3, then read the lamps and the card.</p>
+        <p class="lead">Sets 1 and 2 were good lifts. Log set 3, then read the lamps and the next target.</p>
       </header>
 
-      <p class="fine" id="demo-static">The demo needs JavaScript. In short: every set good, the load goes up a step. Any red light, the load holds. Two holds in a row, the load resets 10%.</p>
+      <p class="fine" id="demo-static">The demo needs JavaScript. In short: every set good, the load goes up a step. Any red light, the load holds. A second red light in a row at the same load resets it about 10%.</p>
 
       <div class="demo" id="demo" role="group" hidden aria-labelledby="h-try">
         <div class="d-sets">
           <div class="d-head">
-            <p class="label chalk">Back Squat · 3 × 8</p>
+            <p class="label chalk">Back Squat · 3 × 8 · RPE 8</p>
             <fieldset class="seg">
               <legend class="sr-only">Unit</legend>
               <label><input type="radio" name="d-unit" value="lb" checked><span>lb</span></label>
@@ -130,18 +131,18 @@
               <label><input type="radio" name="d-rpe" value="10"><span>10</span></label>
             </div>
           </fieldset>
-          <label class="toggle"><input type="checkbox" id="d-held"><span class="sw" aria-hidden="true"></span><span class="t">The last session held at this load<small>A second hold in a row resets the lift.</small></span></label>
+          <label class="toggle"><input type="checkbox" id="d-held"><span class="sw" aria-hidden="true"></span><span class="t">The last session had a red light at this load<small>A second red light in a row at the same load resets the lift.</small></span></label>
         </div>
 
         <div class="d-card">
-          <p class="label">The card · next time</p>
+          <p class="label">Next target</p>
           <div class="card-line">
             <span class="heavy">Back Squat</span>
             <span class="why" id="d-why">3 good lifts at RPE 7.</span>
-            <div class="declared"><span class="num" id="d-next">190</span><span class="ct up" id="d-tag">+5</span></div>
+            <div class="declared"><span class="num" id="d-next">195</span><span class="ct up" id="d-tag">+10</span></div>
           </div>
           <div class="bar-box" id="d-bar"></div>
-          <p class="label chalk" id="d-plates">45 + 25 + 2.5 per side</p>
+          <p class="label chalk" id="d-plates">45 + 25 + 5 per side</p>
         </div>
         <p class="sr-only" aria-live="polite" id="d-status"></p>
       </div>
@@ -158,13 +159,14 @@
       <div class="split pairs">
         <div class="copy stack">
           <ul class="legend lamp-guide">
-            <li><span class="lamps s" role="img" aria-label="Three white lamps"><span class="lamp"></span><span class="lamp"></span><span class="lamp"></span></span><span class="t"><span class="label">Good lift</span><span>All reps, full load, RPE 8 or less.</span></span></li>
-            <li><span class="lamps s" role="img" aria-label="Red, white, white"><span class="lamp no"></span><span class="lamp"></span><span class="lamp"></span></span><span class="t"><span class="label">No lift · reps</span><span>Short of the declared reps.</span></span></li>
+            <li><span class="lamps s" role="img" aria-label="Three white lamps"><span class="lamp"></span><span class="lamp"></span><span class="lamp"></span></span><span class="t"><span class="label">Good lift</span><span>All reps, full load, and RPE at or under the lift's target RPE.</span></span></li>
+            <li><span class="lamps s" role="img" aria-label="Red, white, white"><span class="lamp no"></span><span class="lamp"></span><span class="lamp"></span></span><span class="t"><span class="label">No lift · reps</span><span>Short of the target reps: the set's reps, or the bottom of its range.</span></span></li>
             <li><span class="lamps s" role="img" aria-label="White, red, white"><span class="lamp"></span><span class="lamp no"></span><span class="lamp"></span></span><span class="t"><span class="label">No lift · load</span><span>Under the declared load.</span></span></li>
-            <li><span class="lamps s" role="img" aria-label="White, white, red"><span class="lamp"></span><span class="lamp"></span><span class="lamp no"></span></span><span class="t"><span class="label">No lift · effort</span><span>RPE 9 or 10.</span></span></li>
-            <li><span class="lamps s" role="img" aria-label="Three lamps off"><span class="lamp off"></span><span class="lamp off"></span><span class="lamp off"></span></span><span class="t"><span class="label">Not judged</span><span>Warm-ups, and sets with no declared load.</span></span></li>
+            <li><span class="lamps s" role="img" aria-label="White, white, red"><span class="lamp"></span><span class="lamp"></span><span class="lamp no"></span></span><span class="t"><span class="label">No lift · effort</span><span>RPE over the lift's target RPE.</span></span></li>
+            <li><span class="lamps s" role="img" aria-label="Three lamps off"><span class="lamp off"></span><span class="lamp off"></span><span class="lamp off"></span></span><span class="t"><span class="label">Not judged</span><span>Warm-ups, drop sets, prep lifts, and sets with no declared load or reps.</span></span></li>
           </ul>
-          <p>No RPE counts as a pass. The set screen logs a pass by default. Tap Fail to record RPE 9.</p>
+          <p>A weight-and-reps set that beats the target's estimated max passes reps and load together: 360 × 8 against a target of 365 × 6 is the stronger set. The estimated max is the load × (1 + reps / 30).</p>
+          <p>Each lift has a target RPE, 8 when you set none. The set screen logs each set at the target RPE. Tap another number when the set was easier or harder. No RPE counts as a pass.</p>
           <p>For an assisted lift, less help is the harder lift. The load lamp is white at the declared help or less.</p>
         </div>
         <div class="shots">
@@ -179,32 +181,34 @@
     <div class="wrap">
       <header class="sec-head">
         <p class="label">The rulebook <span class="tag">Pro</span></p>
-        <h2 id="h-rulebook">Five rules write the card</h2>
-        <p class="lead">When you save a session of a workout, the rulebook moves each lift. The card shows every change with its call.</p>
+        <h2 id="h-rulebook">Five rules set the next loads</h2>
+        <p class="lead">After a session of a workout, the rulebook works out each lift's call. Today shows it, and Start session saves it to the workout.</p>
       </header>
       <div class="split even">
         <div class="copy stack">
           <table class="rulebook">
             <caption class="sr-only">The five rules and the call each one writes</caption>
             <tbody>
-              <tr><th scope="row">1</th><td>A good lift: all reps, full load, RPE 8 or less.</td><td class="calls"><span class="lamps xs" role="img" aria-label="Three white lights"><span class="lamp"></span><span class="lamp"></span><span class="lamp"></span></span></td></tr>
-              <tr><th scope="row">2</th><td>Every set a good lift: the next card goes up.<span class="sub">A barbell goes up 5 lb or 2.5 kg.</span></td><td class="calls"><span class="ct up">+5</span></td></tr>
+              <tr><th scope="row">1</th><td>A good lift: all reps, full load, and RPE at or under the target RPE.</td><td class="calls"><span class="lamps xs" role="img" aria-label="Three white lights"><span class="lamp"></span><span class="lamp"></span><span class="lamp"></span></span></td></tr>
+              <tr><th scope="row">2</th><td>Every set a good lift: the load goes up a step.<span class="sub">10 lb or 5 kg for a big lower-body lift, 5 lb or 2.5 kg for any other lift.</span></td><td class="calls"><span class="ct up">+10</span></td></tr>
               <tr><th scope="row">3</th><td>Any red light: same load next time.</td><td class="calls"><span class="ct hold">Hold</span></td></tr>
-              <tr><th scope="row">4</th><td>Two holds in a row: reset 10% and build back.</td><td class="calls"><span class="ct reset">Reset</span></td></tr>
-              <tr><th scope="row">5</th><td>Deload week: lighter bar, fewer sets.<span class="sub">Nothing moves.</span></td><td class="calls"><span class="ct deload">Deload</span></td></tr>
+              <tr><th scope="row">4</th><td>A second red light in a row at the same load: reset about 10% and build back.</td><td class="calls"><span class="ct reset">Reset</span></td></tr>
+              <tr><th scope="row">5</th><td>Deload week: lighter bar, fewer sets.<span class="sub">Start saves the move earned before it. The deload's loads are for that week only.</span></td><td class="calls"><span class="ct deload">Deload</span></td></tr>
             </tbody>
           </table>
           <p>In a rep range, reps come first. Every set good adds a rep, with the call <span class="ct up">Reps +1</span>. At the top of the range, the load goes up a step and the reps start again at the bottom.</p>
+          <p>A big lower-body lift is a weight-and-reps lift on a barbell, a machine or plates for the quads, glutes or hamstrings, and not a curl, extension, kickback, abduction, adduction, raise or calf lift. A lift you set a step for moves by its own step.</p>
+          <p>A load heavier than declared counts when you lift it for the reps on at least half the sets declared at the top load. The next step starts from it.</p>
         </div>
         <div class="copy stack">
-          <p class="label">Other calls on the card</p>
+          <p class="label">Other calls</p>
           <ul class="legend">
             <li><span class="ct same">Same</span><span>The load does not move.</span></li>
             <li><span class="ct plain">Set</span><span>The first session of a lift with no declared load sets it, from your heaviest work set.</span></li>
-            <li><span class="ct plain">You</span><span>You changed the line on the card.</span></li>
+            <li><span class="ct plain">Keep</span><span>Hold a lift's row on Today and choose Keep: it stays where it is.</span></li>
             <li><span class="ct plain">New</span><span>On Today: a lift with no session yet.</span></li>
           </ul>
-          <p>Accept the card, or change a line first. Change attempt sets another load for one lift.</p>
+          <p>Change load sets another load for one session. The workout keeps its own numbers, and the next target comes from what you lifted.</p>
         </div>
       </div>
     </div>
@@ -214,16 +218,16 @@
     <div class="wrap">
       <header class="sec-head">
         <p class="label">When it runs</p>
-        <h2 id="h-when">Only for a new session</h2>
-        <p class="lead">The rulebook runs once, when you save a new session of a workout. Undo on the card puts the workout back. So does deleting the session.</p>
+        <h2 id="h-when">From the last session</h2>
+        <p class="lead">The calls come from the workout's last session. The next Start session saves the ones the workout does not have yet. An imported session is judged against the workout too.</p>
       </header>
       <div class="split even">
         <div class="copy stack">
-          <p class="label">Nothing moves for</p>
+          <p class="label">No move for</p>
           <ul class="rows">
-            <li><span class="r-text">An imported session.</span></li>
-            <li><span class="r-text">A session older than the newest one of that workout.</span></li>
-            <li><span class="r-text">A workout you changed during the session.</span></li>
+            <li><span class="r-text">A lift you keep with Keep on Today.</span></li>
+            <li><span class="r-text">A lift whose workout already has other numbers: you, the trainer or an assistant saved them.</span></li>
+            <li><span class="r-text">A deload session.</span></li>
             <li><span class="r-text">An account without Block Pro.</span></li>
           </ul>
         </div>

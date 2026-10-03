@@ -364,7 +364,7 @@ td.end, th.end { text-align: right; }
 .lifts { border-top: 1px solid var(--rule); }
 .lifts .lift { display: grid; grid-template-columns: minmax(0, 1fr) auto; gap: 4px 18px; align-items: center; padding: 14px 0; border-bottom: 1px solid var(--rule); }
 
-/* Warm-up ladder (LoadScreen) */
+/* Warm-up steps with their plates (the home page's plates section) */
 .ladder { border-top: 1px solid var(--rule); }
 .ladder .step { display: grid; grid-template-columns: 52px minmax(0, 1fr) minmax(112px, 180px); gap: 0 16px; align-items: center; padding: 12px 0; border-bottom: 1px solid var(--rule); }
 .ladder .step .k { font: 700 11px/1 var(--text); letter-spacing: 0.08em; text-transform: uppercase; color: var(--steel); }

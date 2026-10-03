@@ -1,6 +1,6 @@
 /* /plates/: the plate calculator. Every number comes from platemath.js, the port of
    ios/Shared/Model/PlateMath.swift (tested by tools/site/plates_test.mjs). The screen
-   follows the app's Your gym screen (GymView.swift) and warm-up ladder (LoadScreen.swift).
+   follows the app's Your gym screen (GymView.swift). Its warm-up steps are the calculator's own: the app builds no warm-ups.
    The state lives in the address (?unit=lb&bar=45&plates=45,25,10&load=185), so a load
    can be shared as a link. Nothing is stored and nothing is sent. */
 (function () {
