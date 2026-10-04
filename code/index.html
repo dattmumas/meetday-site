@@ -3,142 +3,35 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Your code for Block Pro</title>
-<meta name="description" content="Redeem your Block Pro code: one month free on Pro Yearly for new subscribers, then $39.99 a year until you cancel.">
 <meta name="robots" content="noindex">
-<meta name="color-scheme" content="dark">
-<meta name="theme-color" content="#121212">
-<link rel="canonical" href="https://meetday.lnkd.world/code/">
-<link rel="icon" href="/icon.svg" type="image/svg+xml">
-<link rel="apple-touch-icon" href="/apple-touch-icon.png">
-<meta property="og:type" content="website">
-<meta property="og:site_name" content="Block">
-<meta property="og:title" content="A code for Block Pro">
-<meta property="og:description" content="One month free on Pro Yearly for new subscribers. Open the link to see your code and how to redeem it.">
-<meta property="og:url" content="https://meetday.lnkd.world/code/">
-<meta property="og:image" content="https://meetday.lnkd.world/assets/og/code.png">
-<meta property="og:image:width" content="1200">
-<meta property="og:image:height" content="630">
-<meta property="og:image:alt" content="The words A code for Block Pro and One month free on Pro Yearly, next to three white lamps and the words Good lift.">
-<meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:title" content="A code for Block Pro">
-<meta name="twitter:description" content="One month free on Pro Yearly for new subscribers. Open the link to see your code and how to redeem it.">
-<meta name="twitter:image:alt" content="The words A code for Block Pro and One month free on Pro Yearly, next to three white lamps and the words Good lift.">
-<meta name="twitter:image" content="https://meetday.lnkd.world/assets/og/code.png">
-<!-- smart-app-banner -->
-<link rel="preload" href="/fonts/ArchivoExtraCondensed-Black.woff2" as="font" type="font/woff2" crossorigin>
-<link rel="stylesheet" href="/landing.css">
-<script src="/config.js" defer></script>
-<script src="/site.js" defer></script>
-<script src="/assets/js/code.js" defer></script>
+<meta name="color-scheme" content="light">
+<meta name="theme-color" content="#d9d8d2">
+<title>Block moved to block.lnkd.world</title>
+<script>
+  // The same path, query and fragment on the new address. The origin is fixed text, so no
+  // path can send a visitor to another host: "//other.host" stays a path on block.lnkd.world.
+  (function () {
+    var to = "https://block.lnkd.world" + location.pathname + location.search + location.hash;
+    location.replace(to);
+    document.addEventListener("DOMContentLoaded", function () {
+      var a = document.getElementById("to");
+      a.href = to;
+      a.textContent = to.replace("https://", "");
+    });
+  })();
+</script>
+<style>
+  html, body { margin: 0; background: #d9d8d2; color: #1d1f22; }
+  body { font: 17px/1.55 -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif; }
+  main { max-width: 36rem; margin: 0 auto; padding: 72px 20px; }
+  h1 { font-size: 28px; line-height: 1.15; margin: 0 0 16px; }
+  a { color: #1d55c0; overflow-wrap: anywhere; }
+</style>
 </head>
 <body>
-<a class="skip" href="#main">Skip to content</a>
-<header class="nav">
-  <div class="wrap">
-    <a class="mark" href="/">Block</a>
-    <nav class="links" aria-label="Pages">
-      <a href="/switch/">Switch</a>
-      <a href="/progression/">Progression</a>
-      <a href="/plates/">Plates</a>
-      <a href="/trainer/">AI</a>
-      <a href="/january/">January</a>
-      <a href="/#pro">Pricing</a>
-      <a href="/support.html">Support</a>
-    </nav>
-  </div>
-</header>
-
-<main id="main">
-  <section class="page-hero" aria-labelledby="h-page">
-    <div class="wrap">
-      <div class="intro">
-        <p class="label">Block Pro · offer code</p>
-        <h1 id="h-page">Your code</h1>
-        <div id="code-has">
-          <div class="code-box">
-            <p class="label">Code</p>
-            <p class="code-big" id="code-value"></p>
-          </div>
-          <p class="lead" style="margin-top:22px">One month free on Pro Yearly for new subscribers. Then Pro Yearly is $39.99 a year until you cancel.</p>
-          <div id="code-before">
-            <p class="lead" style="margin-top:22px">Codes open on launch day. Keep this link.</p>
-            <div class="cta" data-store="site-code"><span class="soon">Coming soon to the App Store</span></div>
-          </div>
-          <div id="code-after" hidden>
-            <div class="cta"><a class="btn" id="code-redeem" href="/code/">Redeem the code</a></div>
-          </div>
-        </div>
-        <div id="code-none" hidden>
-          <p class="lead">This link has no code. Type the code you were given.</p>
-          <form class="code-form" id="code-form" action="/code/" method="get" novalidate style="margin-top:22px">
-            <label class="sr-only" for="code-input">Code</label>
-            <input type="text" id="code-input" name="c" autocomplete="off" autocapitalize="characters" spellcheck="false" maxlength="64" placeholder="Type a code">
-            <button class="btn secondary" type="submit">Show</button>
-          </form>
-        </div>
-        <noscript><p class="lead">This page needs JavaScript to show your code. Type the code in the App Store: Account &gt; Redeem Gift Card or Code.</p></noscript>
-      </div>
-    </div>
-  </section>
-
-  <section class="sec" aria-labelledby="h-steps">
-    <div class="wrap">
-      <header class="sec-head">
-        <p class="label">How to redeem</p>
-        <h2 id="h-steps">Three steps to Pro</h2>
-      </header>
-      <div class="split even">
-        <ol class="rows numbered copy">
-          <li><p>Tap Redeem the code on this page. The App Store opens with your code.</p></li>
-          <li><p>Confirm with your Apple Account. The first month of Pro Yearly is free.</p></li>
-          <li><p>Open Block and sign in. If Pro does not show, tap Restore purchases in Today &gt; Settings &gt; Block Pro.</p></li>
-        </ol>
-        <div class="copy stack">
-          <p>The offer is for new subscribers to Block Pro. Apple bills Pro Yearly to your Apple Account after the free month. It renews until you cancel it in your Apple Account settings, at least 24 hours before the end of the period.</p>
-          <p>You can also type the code in the App Store: tap your account picture, then Redeem Gift Card or Code.</p>
-          <p class="fine"><a href="https://www.apple.com/legal/internet-services/itunes/dev/stdeula/">Terms of Use</a> · <a href="/privacy.html">Privacy Policy</a></p>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <section class="sec" aria-labelledby="h-what">
-    <div class="wrap">
-      <header class="sec-head">
-        <p class="label">What Pro adds</p>
-        <h2 id="h-what">Every set judged like a meet</h2>
-        <p class="lead">Logging is free. Block Pro adds the lights on every declared set and your next loads after each session. Training blocks and the AI trainer (iOS 27) are part of Pro too.</p>
-      </header>
-      <p class="more"><a href="/">See Block</a></p>
-    </div>
-  </section>
+<main>
+  <h1>Block moved to block.lnkd.world</h1>
+  <p>Go to <a id="to" href="https://block.lnkd.world/">block.lnkd.world</a>.</p>
 </main>
-
-<footer class="site-foot">
-  <div class="wrap">
-    <div>
-      <p class="label chalk" style="margin-bottom:12px">Block</p>
-      <nav class="links" aria-label="Site">
-        <a href="/switch/">Switch from Hevy</a>
-        <a href="/progression/">Progression</a>
-        <a href="/plates/">Plate calculator</a>
-        <a href="/trainer/">The AI trainer</a>
-        <a href="/assistants/">Connect an assistant</a>
-        <a href="/claude-key/">Your Claude key</a>
-        <a href="/january/">January</a>
-        <a href="/creators/">Creators</a>
-      </nav>
-    </div>
-    <div class="legal">
-      <nav class="links" aria-label="Legal" style="margin-bottom:12px">
-        <a href="/privacy.html">Privacy Policy</a>
-        <a href="https://www.apple.com/legal/internet-services/itunes/dev/stdeula/">Terms of Use</a>
-        <a href="/support.html">Support</a>
-      </nav>
-      <p>© 2026 Matthew Dumas</p>
-    </div>
-  </div>
-</footer>
 </body>
 </html>
